@@ -1,0 +1,83 @@
+--1. Qual o método de pagamento que a platafroma disponibiliza?
+
+	SELECT	* FROM PAGAMENTOS;
+
+	SELECT DISTINCT TIPO, DESCRICAO
+	FROM PAGAMENTOS
+	ORDER BY TIPO;
+
+
+--2. Quais estados mais consomem os serviços de streaming?
+
+	SELECT * FROM ENDERECO;
+
+	SELECT COUNT(ESTADO) AS CONTAGEM, ESTADO
+	FROM ENDERECO
+	GROUP BY ESTADO
+	ORDER BY CONTAGEM DESC;
+
+--3. Quais são os perfis que possuem downloads?
+
+	 SELECT *FROM DOWNLOADS;
+	 SELECT * FROM CONTAS;
+
+	SELECT ID_PERFIL, NOME_TITULAR
+	FROM DOWNLOADS D, CONTAS C
+	WHERE D.ID = C.ID ;
+
+--4. Qual o filme com maior duração registrado no banco de dados?
+	SELECT * FROM FILMES;
+
+	SELECT MAX(P.DURACAO) 
+	FROM FILMES AS F
+	INNER JOIN DBO.PRODUTOS AS P
+	ON F.ID_PRODUTO = P.ID;
+
+--5. Quantos episódios possuem duração entre 30 e 50 minutos?
+	SELECT * FROM EPISODIOS;
+
+	SELECT COUNT(*) AS CONTAGEM
+	FROM EPISODIOS
+	WHERE DURACAO BETWEEN '00:30:00' AND '00:50:00'
+
+
+--6. Quantos contas foram criados entre 01/01/2022 a 31/12/2022?
+
+	SELECT * FROM CONTAS;
+
+	SELECT COUNT(*) AS CONTAGEM
+	FROM CONTAS
+	WHERE DATA_CRIACAO BETWEEN '2022-01-01' AND '2022-12-31';	
+
+
+--7. Quantos produtos possuem classificação 16 anos?
+
+	SELECT * FROM PRODUTOS;
+
+	SELECT COUNT(*) AS CONTAGEM
+	FROM PRODUTOS
+	WHERE CLASSIFICACAO = 16;
+
+--8. Quantos perfis registrados na plataforma são do estado da paraíba?
+
+	SELECT * FROM ENDERECO;
+	
+	SELECT COUNT(ESTADO) AS CONTAGEM,  ESTADO
+	FROM ENDERECO
+	WHERE ESTADO = 'PB'
+	GROUP BY ESTADO;
+
+--9. Quantos lançamentos foram feitos no ano de 2020 E 2021?
+
+	SELECT * FROM PRODUTOS;
+
+	SELECT COUNT(*) AS LANCAMENTO
+	FROM PRODUTOS
+	WHERE LANCAMENTO BETWEEN '2020-01-01' AND '2021-12-31';
+
+--10. Qual a data da ultima conta criada?
+
+	SELECT * FROM CONTAS;
+
+	SELECT MAX (DATA_CRIACAO) AS ULTIMA_CONTA
+	FROM CONTAS;
